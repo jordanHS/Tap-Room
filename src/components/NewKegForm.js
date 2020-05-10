@@ -1,27 +1,14 @@
 import React from "react";
 import { v4 } from "uuid";
 import PropTypes from "prop-types";
+import ReusableForm from "./ReusableForm"
 
 function NewKegForm(props) {
     return(
         <React.Fragment>
-            <form onSubmit={handleNewKegFormSubmission}/>
-                <input
-                    type='text'
-                    name='name'
-                    placeholder='Keg Name'/>
-                <input
-                    type='text'
-                    name='brand'
-                    placeholder='Brand Name'/>
-                <input
-                    type='text'
-                    name='price'
-                    placeholder='Price'/>
-                <input
-                    type='text'
-                    name='alcohol'
-                    placeholder='Alcohol Content'/>
+            <ReusableForm
+                formSubmissionHandler={handleNewKegFormSubmission}
+                buttonText="Add new keg"/>
         </React.Fragment>
     );
 
