@@ -22,3 +22,5 @@ Keg.propTypes = {
     id: PropTypes.string,
     whenKegClicked: PropTypes.func
 }
+
+export default Keg;

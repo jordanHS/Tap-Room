@@ -1,11 +1,10 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
-function NewKegForm(props) {
+function ReusableForm(props) {
     return(
         <React.Fragment>
-            <form onSubmit={handleNewKegFormSubmission}/>
+            <form onSubmit={props.formSubmissionHandler}/>
                 <input
                     type='text'
                     name='name'
@@ -27,7 +26,7 @@ function NewKegForm(props) {
     );
 }
 
-ReusableForm.PropTypes = {
+ReusableForm.propTypes = {
     formSubmissionHandler: PropTypes.func,
     buttonText: PropTypes.string
 };
