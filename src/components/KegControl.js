@@ -42,7 +42,7 @@ class KegControl extends React.Component {
         const newMasterKegList = this.state.masterKegList.filter(keg => keg.id !== id);
         this.setState({
           masterKegList: newMasterKegList,
-          selectedTicket: null
+          selectedKeg: null
         })
       }
 
