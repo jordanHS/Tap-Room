@@ -9,7 +9,8 @@ class KegControl extends React.Component {
         this.state = {
             formVisibleOnPage: false,
             masterKegList: [],
-            selectedKeg: null
+            totalPints: 124,
+            selectedKeg: null,
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -36,6 +37,12 @@ class KegControl extends React.Component {
     handleChangingSelectedKeg = (id) => {
         const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0];
         this.setState({selectedKeg: selectedKeg});
+    }
+
+    handleSellingPintOfSelectedKeg = (id) => {
+      const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0];
+      this.setState({selectedKeg: selectedKeg, 
+        totalPints: id.value - 1})
     }
 
     handleDeletingKeg = (id) => {
