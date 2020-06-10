@@ -9,8 +9,8 @@ class KegControl extends React.Component {
         this.state = {
             formVisibleOnPage: false,
             masterKegList: [],
-            totalPints: 124,
             selectedKeg: null,
+            totalPints: 124
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -39,10 +39,11 @@ class KegControl extends React.Component {
         this.setState({selectedKeg: selectedKeg});
     }
 
-    handleSellingPintOfSelectedKeg = (id) => {
-      const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0];
-      this.setState({selectedKeg: selectedKeg, 
-        totalPints: id.value - 1})
+    handleSellingPintOfSelectedKeg = () => {
+     if(this.state.totalPints < 1) {
+     } else {
+       this.setState({ totalPints: this.state.totalPints - 1})
+     }
     }
 
     handleDeletingKeg = (id) => {
@@ -68,6 +69,9 @@ class KegControl extends React.Component {
         else if(this.state.formVisibleOnPage) {
             currentlyVisibleState = <NewKegForm onNewKegCreation = {this.handleAddingNewKegToList}/>
             buttonText = "Return to Keg List";
+        }
+        else if(this.state.totalPints) {
+              currentlyVisibleState   = <KegDetail sellPint = {this.handleSellingPintOfSelectedKeg}/>
         } else {
            currentlyVisibleState = <KegList kegList={this.state.masterKegList} onKegSelection={this.handleChangingSelectedKeg}/>
            buttonText = "Add keg";
