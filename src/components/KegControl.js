@@ -13,6 +13,7 @@ class KegControl extends React.Component {
             totalPints: 124
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleSellingPintOfSelectedKeg = this.handleSellingPintOfSelectedKeg.bind(this);
     }
     handleClick = () => {
         if (this.state.selectedKeg != null) {
@@ -40,6 +41,7 @@ class KegControl extends React.Component {
     }
 
     handleSellingPintOfSelectedKeg = () => {
+      console.log(this,state.totalPints)
      if(this.state.totalPints < 1) {
      } else {
        this.setState({ totalPints: this.state.totalPints - 1})
