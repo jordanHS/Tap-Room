@@ -2,28 +2,26 @@ import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
 
-function EditTicketForm (props) {
+function EditKeg (props) {
   const { ticket } = props;
 
-  function handleEditKegFormSubmission(event) {
+  function handleEditKegForm(event) {
     event.preventDefault();
-    props.onEditTicket({name: event.target.name.value, brand: event.target.brand.value, price: event.target.price.value, alcohol: event.target.alcohol.value, pintsLeft: 124, id: ticket.id});
+    props.onEditKeg({name: event.target.name.value, brand: event.target.brand.value, price: event.target.price.value, alcohol: event.target.alcohol.value, pintsLeft: 124, id: ticket.id});
   }
 
   return (
     <React.Fragment>
       <ReusableForm 
-        formSubmissionHandler={handleEditKegFormSubmission}
-        buttonText="Update Keg" 
-        formSubmissionHandler={sellPint}
-        buttonText="Sell pint"/>
+        formSubmissionHandler={handleEditKegForm}
+        buttonText="Update Keg"/>
     </React.Fragment>
   );
 }
 
-EditTicketForm.propTypes = {
+EditKeg.propTypes = {
   onEditTicket: PropTypes.func,
   sellPint: PropTypes.func,
 };
 
-export default EditTicketForm;
+export default EditKeg;
