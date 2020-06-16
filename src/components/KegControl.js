@@ -10,10 +10,10 @@ class KegControl extends React.Component {
             formVisibleOnPage: false,
             masterKegList: [],
             selectedKeg: null,
-            totalPints: 124
+            editing: false
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleSellingPintOfSelectedKeg = this.handleSellingPintOfSelectedKeg.bind(this);
+        this.handleSellingPint = this.handleSellingPint.bind(this);
     }
     handleClick = () => {
         if (this.state.selectedKeg != null) {
@@ -40,8 +40,7 @@ class KegControl extends React.Component {
         this.setState({selectedKeg: selectedKeg});
     }
 
-    handleSellingPintOfSelectedKeg = () => {
-      console.log(this,state.totalPints)
+    handleSellingPint = () => {
      if(this.state.totalPints < 1) {
      } else {
        this.setState({ totalPints: this.state.totalPints - 1})
@@ -56,6 +55,19 @@ class KegControl extends React.Component {
         })
       }
 
+      handleEditClick = () => {
+        this.setState({editing: true});
+      }
+
+      handleEditingKeg = (kegToEdit) => {
+        const editedMasterKegList = this.state.masterKegList.filter(keg =>keg.id !== this.state.selectedKeg.id).concat(kegToEdit);
+        this.state({
+          masterKegList: editedMasterKegList,
+          editing: false,
+          selectedKeg: null
+        })
+      }
+
     render() {
         let currentlyVisibleState = null;
         let buttonText = null;
@@ -63,6 +75,10 @@ class KegControl extends React.Component {
         if(this.state.selectedKeg != null) {
             currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg}/>
             buttonText = "Return to Keg";
+        }
+        else if (this.state.editing) {
+          currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg={this.handleEditingKeg} sellPint={this.handleSellingPint}/>
+          buttonText="Return to Keg List"
         }
         else if(this.state.selectedKeg != null) {
             currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} />
@@ -72,9 +88,7 @@ class KegControl extends React.Component {
             currentlyVisibleState = <NewKegForm onNewKegCreation = {this.handleAddingNewKegToList}/>
             buttonText = "Return to Keg List";
         }
-        else if(this.state.totalPints) {
-              currentlyVisibleState   = <KegDetail sellPint = {this.handleSellingPintOfSelectedKeg}/>
-        } else {
+        else {
            currentlyVisibleState = <KegList kegList={this.state.masterKegList} onKegSelection={this.handleChangingSelectedKeg}/>
            buttonText = "Add keg";
             }
