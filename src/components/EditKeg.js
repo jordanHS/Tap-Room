@@ -22,7 +22,8 @@ function EditTicketForm (props) {
 }
 
 EditTicketForm.propTypes = {
-  onEditTicket: PropTypes.func
+  onEditTicket: PropTypes.func,
+  sellPint: PropTypes.func,
 };
 
 export default EditTicketForm;

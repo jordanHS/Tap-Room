@@ -2,6 +2,7 @@ import React from "react";
 import NewKegForm from "./NewKegForm";
 import KegList from "./KegList";
 import KegDetail from"./KegDetail";
+import EditKeg from "./EditKeg"
 
 class KegControl extends React.Component {
     constructor(props) {
@@ -77,7 +78,7 @@ class KegControl extends React.Component {
             buttonText = "Return to Keg";
         }
         else if (this.state.editing) {
-          currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg={this.handleEditingKeg} sellPint={this.handleSellingPint}/>
+          currentlyVisibleState = <EditKeg keg = {this.state.selectedKeg} onEditKeg={this.handleEditingKeg} sellPint={this.handleSellingPint}/>
           buttonText="Return to Keg List"
         }
         else if(this.state.selectedKeg != null) {
