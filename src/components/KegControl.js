@@ -12,6 +12,8 @@ class KegControl extends React.Component {
             masterKegList: [],
             selectedKeg: null,
             editing: false,
+            sell: false,
+            pintsLeft: 124
         };
         this.handleClick = this.handleClick.bind(this);
        
@@ -61,11 +63,20 @@ class KegControl extends React.Component {
           editing: false,
           selectedKeg: null })
       }
-      handleSellingPint = (id) => {
-        const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0]
+      
+      handleSellClick = () => {
+        this.setState({sell: true})
+      }
+
+     handleSellingPint = (id) => {
+       
+       console.log(id)
+        const selectedKeg = this.state.masterKegList.map(keg => keg.id === this.state.selectedKeg.id)[4]
+        console.log(selectedKeg)
         this.setState({ 
           selectedKeg: selectedKeg,
-          pintsLeft: this.pintsLeft - 1})
+          pintsLeft: this.pintsLeft - 1});
+          console.log(this.pintsLeft);
       }
 
 
@@ -78,11 +89,11 @@ class KegControl extends React.Component {
           buttonText = "Return to Keg List";
         }
         else if (this.state.sell) {
-          currentlyVisibleState = <KegDetail keg={this.state.selectedKeg} handleSellingPint = {this.sellPint} />
+          currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} sellPint = {this.handleSellingPint} />
           buttonText = "Return to Keg List"
         }
         else if(this.state.selectedKeg != null) {
-            currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingEdit = {this.handleEditClick} onClickingDelete = {this.handleDeletingKeg}/>
+            currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingEdit = {this.handleEditClick} onClickingDelete = {this.handleDeletingKeg}  sellPint = {this.handleSellClick}/>
             buttonText = "Return to Keg";
         }
         else if(this.state.selectedKeg != null) {
