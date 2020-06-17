@@ -21,7 +21,6 @@ function EditKeg (props) {
 
 EditKeg.propTypes = {
   onEditTicket: PropTypes.func,
-  sellPint: PropTypes.func,
 };
 
 export default EditKeg;

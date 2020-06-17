@@ -63,10 +63,11 @@ class KegControl extends React.Component {
       }
 
       handleSellingPint = (id) => {
-        const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0]
+        const pintsLeft = totalPints - 1
         this.setState({ 
           selectedKeg: selectedKeg,
-          pintsLeft: this.pintsLeft - 1})
+          pintsLeft: 24,
+        })
       }
 
     render() {
